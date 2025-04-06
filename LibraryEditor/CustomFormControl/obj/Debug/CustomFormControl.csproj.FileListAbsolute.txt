@@ -1,0 +1,6 @@
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\bin\Debug\CustomFormControl.dll
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\bin\Debug\CustomFormControl.pdb
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\obj\Debug\CustomFormControl.csproj.AssemblyReference.cache
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\obj\Debug\CustomFormControl.csproj.CoreCompileInputs.cache
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\obj\Debug\CustomFormControl.dll
+D:\Git\145Mir3\Source\LibraryEditor\CustomFormControl\obj\Debug\CustomFormControl.pdb

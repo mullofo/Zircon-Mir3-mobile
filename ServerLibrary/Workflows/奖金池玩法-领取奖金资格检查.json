@@ -1,0 +1,77 @@
+[
+  {
+    "WorkflowName": "奖金池玩法-领取奖金资格检查",
+    "GlobalParams": [
+      {
+        "Name": "最低怪物等级",
+        "Expression": "33"
+      },
+      {
+        "Name": "启用奖金领取",
+        "Expression": "true"
+      },
+      {
+        "Name": "最低领取等级",
+        "Expression": "10"
+      },
+      {
+        "Name": "请求时间",
+        "Expression": "10"
+      },
+      {
+        "Name": "怪物列表",
+        "Expression": "new int[] {1,2,3,10001}"
+      }
+    ],// input1是池子信息 input2是玩家和击杀信息
+    "Rules": [
+      {
+        "RuleName": "资格检查",
+        "Operator": "And",
+        "ErrorMessage": "不能领取",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Rules": [
+          {
+            "RuleName": "怪物检查",
+            "ErrorMessage": "怪物检查失败",
+            "Enabled": true,
+            "ErrorType": 0,
+            "RuleExpressionType": 0,
+            "Expression": "怪物列表.Contains(input2.怪物.MonsterInfo.Index)",
+            "SuccessEvent": "怪物检查通过"
+          },
+          {
+            "RuleName": "开关状态",
+            "ErrorMessage": "开关关闭",
+            "Enabled": true,
+            "ErrorType": 0,
+            "RuleExpressionType": 0,
+            "Expression": "启用奖金领取",
+            "SuccessEvent": "开关开启"
+          },
+          {
+            "RuleName": "奖金池余额检查",
+            "ErrorMessage": "奖金池余额不足",
+            "Enabled": true,
+            "ErrorType": 0,
+            "RuleExpressionType": 0,
+            "Expression": "input1.当前奖金池余额 > 0",
+            "SuccessEvent": "奖金池余额充足"
+          },
+          {
+            "RuleName": "玩家等级要求",
+            "ErrorMessage": "等级不满足要求",
+            "Enabled": true,
+            "ErrorType": 0,
+            "RuleExpressionType": 0,
+            "Expression": "input2.玩家.Level > 5",
+            "SuccessEvent": "等级满足要求"
+          }
+        ],
+        "Expression": "",
+        "SuccessEvent": "可以领取"
+      }
+    ]
+  }
+]

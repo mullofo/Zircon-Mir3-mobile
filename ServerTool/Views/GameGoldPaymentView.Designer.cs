@@ -1,0 +1,295 @@
+﻿namespace Server.Views
+{
+    partial class GameGoldPaymentView
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.GameGoldPaymentGridControl = new DevExpress.XtraGrid.GridControl();
+            this.GameGoldPaymentGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.AccountLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.GameGoldPaymentGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GameGoldPaymentGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AccountLookUpEdit)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // GameGoldPaymentGridControl
+            // 
+            this.GameGoldPaymentGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameGoldPaymentGridControl.Location = new System.Drawing.Point(0, 0);
+            this.GameGoldPaymentGridControl.MainView = this.GameGoldPaymentGridView;
+            this.GameGoldPaymentGridControl.Name = "GameGoldPaymentGridControl";
+            this.GameGoldPaymentGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.AccountLookUpEdit});
+            this.GameGoldPaymentGridControl.Size = new System.Drawing.Size(1093, 402);
+            this.GameGoldPaymentGridControl.TabIndex = 0;
+            this.GameGoldPaymentGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GameGoldPaymentGridView});
+            // 
+            // GameGoldPaymentGridView
+            // 
+            this.GameGoldPaymentGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn15});
+            this.GameGoldPaymentGridView.DetailHeight = 377;
+            this.GameGoldPaymentGridView.GridControl = this.GameGoldPaymentGridControl;
+            this.GameGoldPaymentGridView.Name = "GameGoldPaymentGridView";
+            this.GameGoldPaymentGridView.OptionsView.EnableAppearanceEvenRow = true;
+            this.GameGoldPaymentGridView.OptionsView.EnableAppearanceOddRow = true;
+            this.GameGoldPaymentGridView.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.GameGoldPaymentGridView.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            //
+            this.gridColumn1.Caption = "充值记录ID";
+            this.gridColumn1.FieldName = "Index";
+            this.gridColumn1.MinWidth = 23;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 87;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "充值角色名";
+            this.gridColumn2.FieldName = "CharacterName";
+            this.gridColumn2.MinWidth = 23;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 87;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "名字";
+            this.gridColumn3.FieldName = "Name";
+            this.gridColumn3.MinWidth = 23;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 87;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "付款日期";
+            this.gridColumn4.FieldName = "PaymentDate";
+            this.gridColumn4.MinWidth = 23;
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 87;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.ColumnEdit = this.AccountLookUpEdit;
+            this.gridColumn5.Caption = "游戏账号";
+            this.gridColumn5.FieldName = "Account";
+            this.gridColumn5.MinWidth = 23;
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.Width = 87;
+            // 
+            // AccountLookUpEdit
+            // 
+            this.AccountLookUpEdit.AutoHeight = false;
+            this.AccountLookUpEdit.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.AccountLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.AccountLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Index", "Index"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EMailAddress", "EMailAddress"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Referral", "Referral"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Banned", "Banned")});
+            this.AccountLookUpEdit.DisplayMember = "EMailAddress";
+            this.AccountLookUpEdit.Name = "AccountLookUpEdit";
+            this.AccountLookUpEdit.NullText = "";
+            // 
+            // gridColumn6
+            //
+            this.gridColumn6.Caption = "交易ID";
+            this.gridColumn6.FieldName = "TransactionID";
+            this.gridColumn6.MinWidth = 23;
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.Width = 87;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "交易数据";
+            this.gridColumn7.FieldName = "TransactionType";
+            this.gridColumn7.MinWidth = 23;
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.Width = 87;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "充值状态";
+            this.gridColumn8.FieldName = "Status";
+            this.gridColumn8.MinWidth = 23;
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.Width = 87;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "充值对应的元宝数额";
+            this.gridColumn9.FieldName = "GameGoldAmount";
+            this.gridColumn9.MinWidth = 23;
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 8;
+            this.gridColumn9.Width = 87;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "支付的电子邮件";
+            this.gridColumn10.FieldName = "Payer_EMail";
+            this.gridColumn10.MinWidth = 23;
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 9;
+            this.gridColumn10.Width = 87;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "支付的ID";
+            this.gridColumn11.FieldName = "Payer_ID";
+            this.gridColumn11.MinWidth = 23;
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 10;
+            this.gridColumn11.Width = 87;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "价钱";
+            this.gridColumn12.FieldName = "Price";
+            this.gridColumn12.MinWidth = 23;
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 11;
+            this.gridColumn12.Width = 87;
+            // 
+            // gridColumn13
+            //
+            this.gridColumn13.Caption = "货币";
+            this.gridColumn13.FieldName = "Currency";
+            this.gridColumn13.MinWidth = 23;
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 12;
+            this.gridColumn13.Width = 87;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "费用";
+            this.gridColumn14.FieldName = "Fee";
+            this.gridColumn14.MinWidth = 23;
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 13;
+            this.gridColumn14.Width = 87;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "错误记录";
+            this.gridColumn15.FieldName = "Error";
+            this.gridColumn15.MinWidth = 23;
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 14;
+            this.gridColumn15.Width = 87;
+            // 
+            // GameGoldPaymentView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1093, 402);
+            this.Controls.Add(this.GameGoldPaymentGridControl);
+            this.Name = "GameGoldPaymentView";
+            this.Text = "充值记录";
+            ((System.ComponentModel.ISupportInitialize)(this.GameGoldPaymentGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GameGoldPaymentGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AccountLookUpEdit)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraGrid.GridControl GameGoldPaymentGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView GameGoldPaymentGridView;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit AccountLookUpEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+    }
+}

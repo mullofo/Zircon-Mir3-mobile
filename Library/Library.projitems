@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5461ec8e-6976-45ee-a53b-ec5511a5ad5c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Library</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EnumHelp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FrameSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Functions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Libraries.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\ADBCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\Attributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\Crypto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBBindingList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBMapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBRelationship.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\DBValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MirDB\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\BaseConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\ClientPackets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\GeneralPackets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\MircoLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\Packet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\ServerPackets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Stat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\AccessoryExpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\AchievementInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\BaseStat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CastleInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CompanionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CompanionLevelInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CompanionSkillInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CraftExpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CraftItemInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CustomBuffInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\CustomBuffInfoStat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\DiyMagicEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\DropInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\FishingAreaInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\FullItemStat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\GuardInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\GuildLevelExp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\ItemDisplayEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\ItemInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\ItemInfoStat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\LangInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MagicInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MapInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MapRegion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MineInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonActCheck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonAnimationEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonAnimationFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonAttackEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonDiyAiAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonsterEventInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonsterInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MonsterInfoStat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\MovementInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\NPCInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\PlayerExpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\QuestInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\RespawnInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\SafeZoneInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\SetInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\StoreInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\TriggerInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\WeaponCraftStatsInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\WeaponExpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemModels\WeaponUpgradeNew.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Time.cs" />
+  </ItemGroup>
+</Project>

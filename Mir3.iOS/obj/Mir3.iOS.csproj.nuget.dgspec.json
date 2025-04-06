@@ -1,0 +1,116 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\团购内容\\Source-待定\\Mir3.iOS\\Mir3.iOS.csproj": {}
+  },
+  "projects": {
+    "H:\\团购内容\\Source-待定\\Mir3.iOS\\Mir3.iOS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\团购内容\\Source-待定\\Mir3.iOS\\Mir3.iOS.csproj",
+        "projectName": "Mir3.iOS",
+        "projectPath": "H:\\团购内容\\Source-待定\\Mir3.iOS\\Mir3.iOS.csproj",
+        "packagesPath": "C:\\Users\\BLong\\.nuget\\packages\\",
+        "outputPath": "H:\\团购内容\\Source-待定\\Mir3.iOS\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BLong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-ios16.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\DevExpress 23.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-ios16.1": {
+            "targetAlias": "net8.0-ios16.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-ios16.1": {
+          "targetAlias": "net8.0-ios16.1",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "FontStashSharp.MonoGame": {
+              "target": "Package",
+              "version": "[1.2.7, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )",
+              "autoReferenced": true
+            },
+            "MonoGame.Framework.iOS": {
+              "target": "Package",
+              "version": "[3.8.1.303, )"
+            },
+            "Sentry": {
+              "target": "Package",
+              "version": "[3.23.1, )"
+            },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.iOS": {
+              "privateAssets": "all"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "iossimulator-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

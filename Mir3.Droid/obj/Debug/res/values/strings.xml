@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">传奇3</string>
+	<string name="id">ID</string>
+	<string name="password">PASSWORD</string>
+	<string name="acc_name">账户</string>
+	<string name="suf_name">（真实邮箱）</string>
+	<string name="pwd">密码</string>
+	<string name="key">重置KEY</string>
+	<string name="old_pwd">当前密码</string>
+	<string name="new_pwd">新密码</string>
+	<string name="creat_acc">创建账户</string>
+	<string name="email">E-Mail</string>
+	<string name="pwd_confirm">确认密码</string>
+	<string name="invite_code">激活码</string>
+	<string name="suf_code">（向管理索要）</string>
+	<string name="real_name">真实姓名</string>
+	<string name="birthday">出生日期</string>
+	<string name="creat">创建</string>
+	<string name="cancel">取消</string>
+	<string name="image">图片</string>
+	<string name="hook_drop">未选择</string>
+	<string name="hook_group1">常用</string>
+	<string name="hook_itme1">清理尸体</string>
+	<string name="hook_itme2">免SHIFT</string>
+	<string name="hook_itme3">自动换毒</string>
+	<string name="hook_itme4">自动阴阳盾</string>
+	<string name="forget">申请密钥</string>
+	<string name="forget_use">使用密钥</string>
+	<string name="rest_pwd">重置密码</string>
+</resources>

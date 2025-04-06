@@ -1,0 +1,62 @@
+﻿<Window x:Class="Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Legend Of Mir3" Height="578" Width="872">
+    <Grid>
+        
+        <Image x:Name="mainBody" Source="images/main.png"/>
+        <Canvas>
+            <Label x:Name="txtTitle" Canvas.Top="8" FontFamily="SimSun" Foreground="White" Content="Legend Of Mir3" Canvas.Left="20"/>
+            <Image x:Name="btnMin" Canvas.Right="50" Canvas.Top="3" Stretch="None" Source="images/mini.png" Cursor="Hand"></Image>
+            <Image x:Name="btnClose" Canvas.Right="10" Canvas.Top="3" Stretch="None" Source="images/close.png" Cursor="Hand"></Image>
+            <Grid Height="407" Width="873" Canvas.Top="39" Name="grdBrowser" Background="#1C2026" >
+                <Image x:Name="imgMain" Source="images/web.png" Height="407" Canvas.Top="39"/>
+                <Border x:Name="border1" Height="407" Width="873"></Border>
+            </Grid>
+            
+            <Label x:Name="loadText" Foreground="White" Canvas.Left="20" Canvas.Bottom="90" Height="25" Width="200" MaxWidth="200"></Label>
+            <Label x:Name="downloadText" Foreground="White" Canvas.Left="382" Canvas.Bottom="90" Height="25" Width="100" Canvas.Top="464"/>
+            <TextBlock  Canvas.Right="300" Canvas.Bottom="105" TextWrapping="Wrap" Foreground="Yellow" Canvas.Left="524" Canvas.Top="464">    
+                <Hyperlink x:Name="linkUpdateLog" NavigateUri="https://www.lomcn.cn" Foreground="Yellow">
+                    <TextBlock x:Name="linkUpdateText" Text="更新说明"/>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock  Canvas.Right="300" Canvas.Bottom="85" TextWrapping="Wrap" Foreground="Yellow" Canvas.Left="595" Canvas.Top="464">    
+                <Hyperlink x:Name="btnRepair" NavigateUri="https://www.lomcn.cn" Foreground="Yellow">修正更新</Hyperlink>
+            </TextBlock>
+            <TextBlock  Canvas.Right="300" Canvas.Bottom="85" TextWrapping="Wrap" Foreground="Yellow" Canvas.Left="724" Canvas.Top="12">    
+                <Hyperlink x:Name="ComponentDetection" Foreground="Yellow">组件检测</Hyperlink>
+            </TextBlock>
+            <Label x:Name="labelGameType" Visibility="Hidden" Content="界面选择" Canvas.Left="714" Canvas.Top="459" Foreground="Yellow"/>
+            <ComboBox x:Name="dropGameType" Visibility="Hidden" SelectedIndex="0" Canvas.Right="230" Canvas.Bottom="105" Height="20" Width="50" IsEditable="true" IsReadOnly="true" BorderThickness="1" Text="韩版" Canvas.Left="777" Canvas.Top="462">
+                <ComboBoxItem>
+                    <TextBlock Foreground="Yellow">韩版</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock  Foreground="Yellow">1.45</TextBlock>
+                </ComboBoxItem>
+            </ComboBox>
+            <StackPanel Canvas.Left="82" Canvas.Bottom="52" Width="530">
+                <Image x:Name="currentProgress" Stretch="None" HorizontalAlignment="Left" Height="10" Source="images/green.png" MaxWidth="530" />
+                <Image x:Name="totalProgress" Stretch="None" HorizontalAlignment="Left" Margin="0,9,0,0"  Height="10" Source="images/yellow.png" MaxWidth="530" />
+            </StackPanel>
+            <Grid x:Name="btnStart" Canvas.Bottom="45" Canvas.Right="10" Canvas.Left="675" Canvas.Top="484">
+                <Image Source="images/start.png" Width="150" Height="50"/>
+                <Label Margin="42,6,28,4" FontFamily="SimSun" Content="开始游戏" FontSize="24" FontWeight="Bold" Foreground="#FF89E041" Cursor="Hand" Width="120" Height="40" />
+            </Grid>
+            
+        </Canvas>
+        <Label Content="总体进度" HorizontalAlignment="Left" Margin="19,508,0,0" VerticalAlignment="Top" Foreground="#FF515E6D"/>
+        <Label Content="下载进度" HorizontalAlignment="Left" Margin="19,489,0,0" VerticalAlignment="Top" Foreground="#FF515E6D"/>
+        <Grid Visibility="Hidden" x:Name="buzy" Background="#DCDCDC" Opacity="0.3"></Grid>
+    </Grid>
+</Window>

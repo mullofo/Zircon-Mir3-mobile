@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "KjWDVSFlYsQ=",
+  "success": true,
+  "projectFilePath": "H:\\团购内容\\Source-待定\\Mir3.iOS\\Mir3.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BLong\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\cyotek.drawing.bitmapfont\\2.0.4\\cyotek.drawing.bitmapfont.2.0.4.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\fontstashsharp.base\\1.1.7\\fontstashsharp.base.1.1.7.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\fontstashsharp.monogame\\1.2.7\\fontstashsharp.monogame.1.2.7.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\fontstashsharp.rasterizers.stbtruetypesharp\\1.1.7\\fontstashsharp.rasterizers.stbtruetypesharp.1.1.7.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\monogame.framework.ios\\3.8.1.303\\monogame.framework.ios.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\sentry\\3.23.1\\sentry.3.23.1.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\sentry.bindings.cocoa\\3.23.1\\sentry.bindings.cocoa.3.23.1.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\skiasharp\\2.88.8\\skiasharp.2.88.8.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\skiasharp.nativeassets.ios\\2.88.8\\skiasharp.nativeassets.ios.2.88.8.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\stbimagesharp\\2.27.12\\stbimagesharp.2.27.12.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\stbtruetypesharp\\1.26.10\\stbtruetypesharp.1.26.10.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
+    "C:\\Users\\BLong\\.nuget\\packages\\system.runtime.interopservices.nfloat.internal\\6.0.1\\system.runtime.interopservices.nfloat.internal.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

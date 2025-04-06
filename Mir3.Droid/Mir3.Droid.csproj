@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>23.0</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>com.xj.Mir3.Droid</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AndroidSigningKeyStore>BlackDragon.keystore</AndroidSigningKeyStore>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;Mobile;DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <RunAOTCompilation>False</RunAOTCompilation>
+    <Optimize>False</Optimize>
+    <AndroidEnableSGenConcurrent>True</AndroidEnableSGenConcurrent>
+    <PublishTrimmed>False</PublishTrimmed>
+    <AndroidSigningStorePass>abcdefg654321</AndroidSigningStorePass>
+    <AndroidSigningKeyPass>abcdefg654321</AndroidSigningKeyPass>
+    <AndroidSigningKeyAlias>BlackDragon</AndroidSigningKeyAlias>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <DebugSymbols>True</DebugSymbols>
+    <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <NoWarn>1701;1702;CS1587;CS0067</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;Mobile;</DefineConstants>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <Optimize>True</Optimize>
+    <PublishTrimmed>True</PublishTrimmed>
+    <DebugSymbols>False</DebugSymbols>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
+    <AndroidKeyStore>False</AndroidKeyStore>
+    <AndroidEnableSGenConcurrent>True</AndroidEnableSGenConcurrent>
+    <AndroidSigningStorePass>abcdefg654321</AndroidSigningStorePass>
+    <AndroidSigningKeyPass>abcdefg654321</AndroidSigningKeyPass>
+    <AndroidSigningKeyAlias>BlackDragon</AndroidSigningKeyAlias>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <NoWarn>1701;1702;CS1587;CS0067</NoWarn>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FontStashSharp.MonoGame" Version="1.2.7" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.6.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.VectorDrawable" Version="1.1.0.16" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.8.0" />
+    <PackageReference Include="Xam.WheelPicker" Version="1.1.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Hooks\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Helpers\" />
+  </ItemGroup>
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+  <Import Project="..\Library\Library.projitems" Label="Shared" />
+  <Import Project="..\Mir3.Mobile\Mir3.Mobile.projitems" Label="Shared" />
+</Project>

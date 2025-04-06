@@ -1,0 +1,46 @@
+.bg {
+	float: center;
+	margin: -20 0 0 0;
+	valign: middle;
+	width: 400;
+	height: 300;
+}
+.icon{
+	float: center;
+	width: 200;
+	margin-bottom:10;
+}
+.content {
+	width: 270;
+	height: 200;
+	float: center;
+	valign: middle;
+	margin: -250 0 0 0;
+}
+.row{
+	float: center;
+	margin-bottom: 10;
+}
+.pre{
+	color:#fff;
+}
+.pre2 {
+	margin-top:4;
+	font-size:10;
+	color: #fff187;
+}
+.row_input{
+	float:right;
+	width: 150;
+	height: 20;
+	background: #fff;
+	color: #000;
+}
+.submit{
+	float: center;
+	clear: both;
+	margin-top: 15;
+}
+#ok{
+	margin-right: 70;
+}

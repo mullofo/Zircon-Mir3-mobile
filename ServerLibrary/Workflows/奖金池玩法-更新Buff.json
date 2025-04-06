@@ -1,0 +1,134 @@
+[
+  {
+    "WorkflowName": "奖金池玩法-更新Buff",
+    "GlobalParams": [ // 支持单档位多个buff属性
+      {
+        "Name": "档位1Buff属性类别",
+        "Expression": "Stat.DropRate"
+      },
+      {
+        "Name": "档位1Buff属性值",
+        "Expression": "10"
+      },
+      {
+        "Name": "档位2Buff属性类别",
+        "Expression": "Stat.DropRate"
+      },
+      {
+        "Name": "档位2Buff属性值",
+        "Expression": "20"
+      },
+      {
+        "Name": "档位3Buff属性类别",
+        "Expression": "Stat.DropRate"
+      },
+      {
+        "Name": "档位3Buff属性值",
+        "Expression": "30"
+      },
+      {
+        "Name": "档位4Buff属性类别",
+        "Expression": "Stat.DropRate"
+      },
+      {
+        "Name": "档位4Buff属性值",
+        "Expression": "40"
+      },
+      {
+        "Name": "档位5Buff属性类别",
+        "Expression": "Stat.DropRate"
+      },
+      {
+        "Name": "档位5Buff属性值",
+        "Expression": "50"
+      }
+    ],
+    "Rules": [ // 下面的不用改 除非要加别的buff
+      {
+        "RuleName": "是否是档位1",
+        "ErrorMessage": "档位1判断失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.当前档位 == 1",
+        "SuccessEvent": "档位1",
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+              "Expression": "SEnvir.RewardPollAddBuff(档位1Buff属性类别, 档位1Buff属性值)"
+            }
+          }
+        }
+      },
+      {
+        "RuleName": "是否是档位2",
+        "ErrorMessage": "档位2判断失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.当前档位 == 2",
+        "SuccessEvent": "档位2",
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+              "Expression": "SEnvir.RewardPollAddBuff(档位2Buff属性类别, 档位2Buff属性值)"
+            }
+          }
+        }
+      },
+      {
+        "RuleName": "是否是档位3",
+        "ErrorMessage": "档位3判断失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.当前档位 == 3",
+        "SuccessEvent": "档位3",
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+              "Expression": "SEnvir.RewardPollAddBuff(档位3Buff属性类别, 档位3Buff属性值)"
+            }
+          }
+        }
+      },
+      {
+        "RuleName": "是否是档位4",
+        "ErrorMessage": "档位4判断失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.当前档位 == 4",
+        "SuccessEvent": "档位4",
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+              "Expression": "SEnvir.RewardPollAddBuff(档位4Buff属性类别, 档位4Buff属性值)"
+            }
+          }
+        }
+      },
+      {
+        "RuleName": "是否是档位5",
+        "ErrorMessage": "档位5判断失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.当前档位 == 5",
+        "SuccessEvent": "档位5",
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+              "Expression": "SEnvir.RewardPollAddBuff(档位5Buff属性类别, 档位5Buff属性值)"
+            }
+          }
+        }
+      }
+    ]
+  }
+]

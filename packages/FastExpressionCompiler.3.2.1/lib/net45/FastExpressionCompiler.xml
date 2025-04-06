@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastExpressionCompiler</name>
+    </assembly>
+    <members>
+        <member name="T:FastExpressionCompiler.CompilerFlags">
+            <summary>The options for the compiler</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.CompilerFlags.Default">
+            <summary>The default options: Invocation lambda is inlined, no debug info</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.CompilerFlags.NoInvocationLambdaInlining">
+            <summary>Prevents the inlining of the lambda in the Invocation expression to optimize for the multiple same lambda compiled once</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.CompilerFlags.EnableDelegateDebugInfo">
+            <summary>Adds the Expression, ExpressionString, and CSharpString to the delegate closure for the debugging inspection</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.CompilerFlags.ThrowOnNotSupportedExpression">
+            <summary>When the flag set then instead of the returning `null` the specific exception</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.NotSupported">
+            <summary>Indicates the not supported expression combination</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.NewArrayInit_MultidimensionalArray">
+            <summary>Multi-dimensional array initializer is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.Quote">
+            <summary>Quote is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.Dynamic">
+            <summary>Dynamic is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.RuntimeVariables">
+            <summary>RuntimeVariables is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.MemberInit_MemberBinding">
+            <summary>MemberInit MemberBinding is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.MemberInit_ListBinding">
+            <summary>MemberInit ListBinding is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.Try_GotoReturnToTheFollowupLabel">
+            <summary>Goto of the Return kind from the TryCatch is not supported</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupported.Assign_Target">
+            <summary>Not supported assignment target</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.NotSupportedExpressionException">
+            <summary>FEC Not Supported exception</summary>
+        </member>
+        <member name="F:FastExpressionCompiler.NotSupportedExpressionException.Reason">
+            <summary>The reason</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.NotSupportedExpressionException.#ctor(FastExpressionCompiler.NotSupported)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.NotSupportedExpressionException.#ctor(FastExpressionCompiler.NotSupported,System.String)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.IDelegateDebugInfo">
+            <summary>The interface is implemented by the compiled delegate Target if `CompilerFlags.EnableDelegateDebugInfo` is set.</summary>
+        </member>
+        <member name="P:FastExpressionCompiler.IDelegateDebugInfo.Expression">
+            <summary>The lambda expression object that was compiled to the delegate</summary>
+        </member>
+        <member name="P:FastExpressionCompiler.IDelegateDebugInfo.ExpressionString">
+            <summary>The lambda expression construction syntax C# code</summary>
+        </member>
+        <member name="P:FastExpressionCompiler.IDelegateDebugInfo.CSharpString">
+            <summary>The lambda expression equivalent C# code</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.ExpressionCompiler">
+            <summary>Compiles expression to delegate ~20 times faster than Expression.Compile.
+            Partial to extend with your things when used as source file.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``1(System.Linq.Expressions.LambdaExpression,System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to TDelegate type. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFastToIL(System.Linq.Expressions.LambdaExpression,System.Reflection.Emit.ILGenerator,System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            Compiles a static method to the passed IL Generator.
+            Could be used as alternative for `CompileToMethod` like this <code><![CDATA[funcExpr.CompileFastToIL(methodBuilder.GetILGenerator())]]></code>.
+            Check `IssueTests.Issue179_Add_something_like_LambdaExpression_CompileToMethod.cs` for example.
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast(System.Linq.Expressions.LambdaExpression,System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileSys``1(System.Linq.Expressions.Expression{``0})">
+            <summary>Unifies Compile for System.Linq.Expressions and FEC.LightExpression</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileSys(System.Linq.Expressions.LambdaExpression)">
+            <summary>Unifies Compile for System.Linq.Expressions and FEC.LightExpression</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``1(System.Linq.Expressions.Expression{``0},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to TDelegate type. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to TDelegate type. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to TDelegate type. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast(System.Linq.Expressions.Expression{System.Action},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``1(System.Linq.Expressions.Expression{System.Action{``0}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``2(System.Linq.Expressions.Expression{System.Action{``0,``1}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``5(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.CompileFast``6(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3,``4,``5}},System.Boolean,FastExpressionCompiler.CompilerFlags)">
+            <summary>Compiles lambda expression to delegate. Use ifFastFailedReturnNull parameter to Not fallback to Expression.Compile, useful for testing.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.TryCompile``1(System.Linq.Expressions.LambdaExpression,FastExpressionCompiler.CompilerFlags)">
+            <summary>Tries to compile lambda expression to <typeparamref name="TDelegate"/></summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.TryCompileWithPreCreatedClosure``1(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.ConstantExpression[])">
+            <summary>Tries to compile lambda expression to <typeparamref name="TDelegate"/> 
+            with the provided closure object and constant expressions (or lack there of) -
+            Constant expression should be the in order of Fields in closure object!
+            Note 1: Use it on your own risk - FEC won't verify the expression is compile-able with passed closure, it is up to you!
+            Note 2: The expression with NESTED LAMBDA IS NOT SUPPORTED!
+            Note 3: `Label` and `GoTo` are not supported in this case, because they need first round to collect out-of-order labels</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.TryCompileWithPreCreatedClosure``1(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.ConstantExpression[],FastExpressionCompiler.CompilerFlags)">
+            <summary>Tries to compile lambda expression to <typeparamref name="TDelegate"/> 
+            with the provided closure object and constant expressions (or lack there of)</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.TryCompileWithoutClosure``1(System.Linq.Expressions.LambdaExpression,FastExpressionCompiler.CompilerFlags)">
+            <summary>Tries to compile expression to "static" delegate, skipping the step of collecting the closure object.</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.ExpressionCompiler.ClosureInfo">
+            Track the info required to build a closure object + some context information not directly related to closure.
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo._blockStack">
+            Tracks the stack of blocks where are we in emit phase
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.Labels">
+            Map of the links between Labels and Goto's
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.Constants">
+            Constant expressions to find an index (by reference) of constant expression from compiled expression.
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.ConstantUsageThenVarIndex">
+            Constant usage count and variable index
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.NonPassedParameters">
+            Parameters not passed through lambda parameter list But used inside lambda body.
+            The top expression should Not contain not passed parameters. 
+        </member>
+        <member name="F:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.NestedLambdas">
+            All nested lambdas recursively nested in expression
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.#ctor(FastExpressionCompiler.ExpressionCompiler.ClosureStatus,System.Object[],System.Int32[])">
+            <summary>Populates info directly with provided closure object and constants.
+            If provided, the <paramref name="constUsage"/> should be the size of <paramref name="constValues"/>
+            </summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.PushBlockWithVars(System.Linq.Expressions.ParameterExpression)">
+            LocalVar maybe a `null` in a collecting phase when we only need to decide if ParameterExpression is an actual parameter or variable
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.ClosureInfo.PushBlockWithVars(System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.ParameterExpression},System.Int32[])">
+            LocalVars maybe a `null` in collecting phase when we only need to decide if ParameterExpression is an actual parameter or variable
+        </member>
+        <member name="M:FastExpressionCompiler.ExpressionCompiler.IsClosureBoundConstant(System.Object,System.Type)">
+            Helps to identify constants as the one to be put into the Closure
+        </member>
+        <member name="T:FastExpressionCompiler.ExpressionCompiler.EmittingVisitor">
+            <summary>Supports emitting of selected expressions, e.g. lambdaExpr are not supported yet.
+            When emitter find not supported expression it will return false from <see cref="M:FastExpressionCompiler.ExpressionCompiler.EmittingVisitor.TryEmit(System.Linq.Expressions.Expression,System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.ParameterExpression},System.Reflection.Emit.ILGenerator,FastExpressionCompiler.ExpressionCompiler.ClosureInfo@,FastExpressionCompiler.CompilerFlags,FastExpressionCompiler.ExpressionCompiler.ParentFlags,System.Int32)"/>, so I could fallback
+            to normal and slow Expression.Compile.</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.ILGeneratorHacks">
+            <summary>Reflecting the internal methods to access the more performant for defining the local variable</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ILGeneratorHacks.GetNextLocalVarIndex(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>Efficiently returns the next variable index, hopefully without unnecessary allocations.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ToExpressionPrinter.ToExpressionString(System.Linq.Expressions.Expression,FastExpressionCompiler.TryPrintConstant)">
+            <summary>
+            Prints the expression in its constructing syntax - 
+            helpful to get the expression from the debug session and put into it the code for the test.
+            </summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ToExpressionPrinter.ToExpressionString(System.Linq.Expressions.Expression,System.Collections.Generic.List{System.Linq.Expressions.ParameterExpression}@,System.Collections.Generic.List{System.Linq.Expressions.Expression}@,System.Collections.Generic.List{System.Linq.Expressions.LabelTarget}@,System.Boolean,System.Func{System.Type,System.String,System.String},System.Int32,FastExpressionCompiler.TryPrintConstant)">
+            <summary>
+            Prints the expression in its constructing syntax - 
+            helpful to get the expression from the debug session and put into it the code for the test.
+            In addition, returns the gathered expressions, parameters ad labels. 
+            </summary>
+        </member>
+        <member name="T:FastExpressionCompiler.TryPrintConstant">
+            <summary>Output the constant to C# string or should return `null`</summary>
+        </member>
+        <member name="T:FastExpressionCompiler.ToCSharpPrinter">
+            <summary>Converts the expression into the valid C# code representation</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ToCSharpPrinter.ToCSharpString(System.Linq.Expressions.Expression)">
+            <summary>Tries hard to convert the expression into the correct C# code</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ToCSharpPrinter.ToCSharpString(System.Linq.Expressions.Expression,FastExpressionCompiler.TryPrintConstant)">
+            <summary>Tries hard to convert the expression into the correct C# code</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.ToCSharpPrinter.ToCSharpString(System.Linq.Expressions.Expression,System.Text.StringBuilder,System.Int32,System.Boolean,System.Func{System.Type,System.String,System.String},System.Int32,FastExpressionCompiler.TryPrintConstant)">
+            <summary>Tries hard to convert the expression into the correct C# code</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToCode(System.Type,System.Boolean,System.Func{System.Type,System.String,System.String},System.Boolean)">
+            <summary>Converts the <paramref name="type"/> into the proper C# representation.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToCode(System.Boolean)">
+            <summary>Prints valid C# Boolean</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToCode(System.String)">
+            <summary>Prints valid C# String escaping the things</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToEnumValueCode(System.Type,System.Object,System.Boolean,System.Func{System.Type,System.String,System.String})">
+            <summary>Prints valid C# Enum literal</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToCommaSeparatedCode(System.Collections.IEnumerable,FastExpressionCompiler.CodePrinter.IObjectToCode,System.Boolean,System.Func{System.Type,System.String,System.String})">
+            <summary>Prints many code items as the array initializer.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToArrayInitializerCode(System.Collections.IEnumerable,System.Type,FastExpressionCompiler.CodePrinter.IObjectToCode,System.Boolean,System.Func{System.Type,System.String,System.String})">
+            <summary>Prints many code items as array initializer.</summary>
+        </member>
+        <member name="M:FastExpressionCompiler.CodePrinter.ToCode(System.Object,FastExpressionCompiler.CodePrinter.IObjectToCode,System.Boolean,System.Func{System.Type,System.String,System.String})">
+            <summary>
+            Prints a valid C# for known <paramref name="x"/>,
+            otherwise uses passed <paramref name="notRecognizedToCode"/> or falls back to `ToString()`.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,649 @@
+﻿using Client.Controls;
+using Client.Envir;
+using Client.Extentions;
+using Client.Scenes.Configs;
+using Client.UserModels;
+using Library;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using C = Library.Network.ClientPackets;
+
+//Cleaned
+namespace Client.Scenes.Views
+{
+    /// <summary>
+    /// 组队界面
+    /// </summary>
+    public sealed class GroupDialog : DXWindow
+    {
+        #region Properties
+
+        public DXImageControl Grsround;
+        public DXButton Close1Button, AllowGroupButton, AddButton, Add1Button, RemoveButton;
+        public DXCheckBox ShowPartyList;
+        public DXLabel Captain, AllowGroupLabel;
+
+        #region AllowGroup
+        /// <summary>
+        /// 允许组队开关
+        /// </summary>
+        public bool AllowGroup
+        {
+            get => _AllowGroup;
+            set
+            {
+                if (_AllowGroup == value) return;
+
+                bool oldValue = _AllowGroup;
+                _AllowGroup = value;
+
+                OnAllowGroupChanged(oldValue, value);
+            }
+        }
+        private bool _AllowGroup;
+        public event EventHandler<EventArgs> AllowGroupChanged;
+        public void OnAllowGroupChanged(bool oValue, bool nValue)
+        {
+            AllowGroupChanged?.Invoke(this, EventArgs.Empty);
+
+            if (AllowGroup && !BigPatchConfig.ChkAutoUnAcceptGroup)
+            {
+                AllowGroupButton.Index = 1370;
+                AllowGroupButton.Hint = "AllowGroup.On".Lang();
+                AllowGroupLabel.Text = "[允许]".Lang();
+            }
+            else
+            {
+                AllowGroupButton.Index = 1371;
+                AllowGroupButton.Hint = "AllowGroup.Off".Lang();
+                AllowGroupLabel.Text = "[拒绝]".Lang();
+            }
+        }
+
+        #endregion
+
+        public DXTab MemberTab;
+
+        public List<ClientPlayerInfo> Members = new List<ClientPlayerInfo>();
+
+        public List<DXLabel> Labels = new List<DXLabel>();
+
+        #region SelectedLabel
+        /// <summary>
+        /// 选定的标签
+        /// </summary>
+        public DXLabel SelectedLabel
+        {
+            get => _SelectedLabel;
+            set
+            {
+                if (_SelectedLabel == value) return;
+
+                DXLabel oldValue = _SelectedLabel;
+                _SelectedLabel = value;
+
+                OnSelectedLabelChanged(oldValue, value);
+            }
+        }
+        private DXLabel _SelectedLabel;
+        public event EventHandler<EventArgs> SelectedLabelChanged;
+        public void OnSelectedLabelChanged(DXLabel oValue, DXLabel nValue)
+        {
+            if (oValue != null)
+            {
+                oValue.ForeColour = Color.FromArgb(198, 166, 99);
+                oValue.BackColour = Color.Empty;
+            }
+
+            if (nValue != null)
+            {
+                nValue.ForeColour = Color.White;
+                nValue.BackColour = Color.FromArgb(24, 16, 16);
+            }
+
+            RemoveButton.Enabled = nValue != null && Members[0].ObjectID == GameScene.Game.User.ObjectID;
+
+            SelectedLabelChanged?.Invoke(this, EventArgs.Empty);
+        }
+        #endregion
+
+        public override WindowType Type => WindowType.GroupBox;
+        public override bool CustomSize => false;
+        public override bool AutomaticVisibility => false;
+        #endregion
+
+        /// <summary>
+        /// 组队界面
+        /// </summary>
+        public GroupDialog()
+        {
+            HasTitle = false;  //不显示标题
+            HasFooter = false;  //不显示页脚
+            HasTopBorder = false;  //不显示边框
+            TitleLabel.Visible = false;  //标题标签不用
+            IgnoreMoveBounds = true;
+            Opacity = 0F;
+
+            Size s;
+            s = UI1Library.GetSize(1360);
+            Size = s;
+            Location = ClientArea.Location;
+
+            Grsround = new DXImageControl  //组队容器
+            {
+                Parent = this,
+                LibraryFile = LibraryFile.UI1,
+                Index = 1360,
+                ImageOpacity = 0.85F,
+                Location = new Point(0, 0),
+                IsControl = true,
+                PassThrough = true,
+                Visible = true
+            };
+
+            Close1Button = new DXButton       //关闭按钮
+            {
+                Parent = this,
+                Index = 1221,
+                LibraryFile = LibraryFile.UI1,
+                Location = new Point(217, 293)
+            };
+            Close1Button.MouseClick += (o, e) => Visible = false;
+
+            AllowGroupButton = new DXButton    //允许组队按钮
+            {
+                LibraryFile = LibraryFile.UI1,
+                Index = 1371,
+                Parent = this,
+                Hint = "AllowGroup.Off".Lang(),
+                Location = new Point(24, 44)
+            };
+            AllowGroupButton.MouseClick += (o, e) =>
+            {
+                if (GameScene.Game.Observer) return;
+
+                CEnvir.Enqueue(new C.GroupSwitch { Allow = !AllowGroup });
+            };
+
+            Captain = new DXLabel
+            {
+                Parent = this,
+                Size = new Size(40, 15),
+                Font = new Font(Config.FontName, CEnvir.FontSize(9F), FontStyle.Bold),
+                ForeColour = Color.FromArgb(198, 166, 99),
+                Location = new Point(110, 12),
+                Text = "组队".Lang(),
+            };
+
+            AllowGroupLabel = new DXLabel
+            {
+                Parent = this,
+                Size = new Size(40, 15),
+                ForeColour = Color.White,
+                Location = new Point(110, 44),
+                Text = "[拒绝]".Lang(),
+            };
+
+            DXTabControl members = new DXTabControl
+            {
+                Parent = this,
+                Size = new Size(200, 200),
+                Location = new Point(28, 66),
+            };
+
+            MemberTab = new DXTab   //队员选项卡
+            {
+                TabButton =
+                {
+                    IsControl = false,
+                    Visible = false,
+                },
+                Parent = members,
+                Border = false,
+                Opacity = 0F,
+            };
+
+            //ShowPartyList = new DXCheckBox      //组队界面开关
+            //{
+            //    Label = { Text = "组队界面".Lang() },
+            //    Parent = this,
+            //    Visible = true,
+            //};
+            //ShowPartyList.Location = new Point(ClientArea.Right - 80, 40);
+            //ShowPartyList.CheckedChanged += (o, e) =>
+            //{
+            //    Config.PartyListVisible = ShowPartyList.Checked;
+            //    GameScene.Game.GroupMemberBox.Visible = Config.PartyListVisible;
+            //};
+
+            AddButton = new DXButton   //邀请按钮
+            {
+                LibraryFile = LibraryFile.UI1,
+                Index = 1362,
+                Hint = "邀请组队".Lang(),
+                Location = new Point(ClientArea.Right - 210, Size.Height - 50),
+                Parent = this,
+            };
+            AddButton.MouseClick += (o, e) =>
+            {
+                if (GameScene.Game.Observer) return;
+
+                if (GameScene.Game.MapControl.MapInfo.CanPlayName == true) return;
+
+                if (Members.Count >= Globals.GroupLimit)
+                {
+                    GameScene.Game.ReceiveChat("组队人数已达到上限".Lang(), MessageType.System);
+                    return;
+                }
+
+                if (Members.Count >= Globals.GroupLimit)
+                {
+                    GameScene.Game.ReceiveChat("你不是队长无权限操作".Lang(), MessageType.System);
+                    return;
+                }
+
+                new DXInputWindow((str) =>
+                {
+                    return Globals.CharacterReg.IsMatch(str);
+                }, (str) =>
+                {
+                    CEnvir.Enqueue(new C.GroupInvite { Name = str });
+                }, "请输入你要邀请组队的玩家名字".Lang());
+            };
+
+            Add1Button = new DXButton
+            {
+                LibraryFile = LibraryFile.UI1,
+                Index = 1365,
+                Hint = "添加队员".Lang(),
+                Location = new Point(ClientArea.Right - 150, Size.Height - 50),
+                Parent = this,
+            };
+            Add1Button.MouseClick += (o, e) =>
+            {
+                if (GameScene.Game.Observer) return;
+
+                if (GameScene.Game.MapControl.MapInfo.CanPlayName == true) return;
+
+                if (Members.Count >= Globals.GroupLimit)
+                {
+                    GameScene.Game.ReceiveChat("组队人数已达到上限".Lang(), MessageType.System);
+                    return;
+                }
+
+                if (Members.Count >= Globals.GroupLimit)
+                {
+                    GameScene.Game.ReceiveChat("你不是队长无权限操作".Lang(), MessageType.System);
+                    return;
+                }
+                //Invite Group Member
+                new DXInputWindow((str) =>
+                {
+                    return Globals.CharacterReg.IsMatch(str);
+                }, (str) =>
+                {
+                    CEnvir.Enqueue(new C.GroupInvite { Name = str });
+                }, "请输入你要邀请组队的玩家名字".Lang());
+            };
+
+            RemoveButton = new DXButton   //删除队员按钮
+            {
+                LibraryFile = LibraryFile.UI1,
+                Index = 1368,
+                Hint = "移除队员".Lang(),
+                Location = new Point(ClientArea.Right - 90, Size.Height - 50),
+                Parent = this,
+                //Enabled = false,
+            };
+            RemoveButton.MouseClick += (o, e) =>
+            {
+                if (GameScene.Game.Observer) return;
+
+                CEnvir.Enqueue(new C.GroupRemove { Name = SelectedLabel.Text });
+            };
+        }
+
+        #region Methods
+        /// <summary>
+        /// 更新组队成员
+        /// </summary>
+        public void UpdateMembers()
+        {
+            SelectedLabel = null;
+
+            foreach (DXLabel label in Labels)  //遍历 标签
+                label.Dispose();  //标签处理
+
+            Labels.Clear();  //标签清除
+
+            for (int i = 0; i < Members.Count; i++)
+            {
+                ClientPlayerInfo member = Members[i];
+
+                DXLabel label = new DXLabel
+                {
+                    Parent = MemberTab,
+                    Location = new Point(10 + 100 * (i % 2), 10 + 20 * (i / 2)),
+                    Text = member.Name,
+                };
+                label.MouseClick += (o, e) =>
+                {
+                    if (e.Button == MouseButtons.Left)
+                        SelectedLabel = label;
+                    //else if (e.Button == MouseButtons.Right)
+                    //{
+                    //    GameScene.Game.BigMapBox.Visible = true;
+                    //    GameScene.Game.BigMapBox.Opacity = 1F;
+
+
+                    //    if (!GameScene.Game.DataDictionary.TryGetValue(member.ObjectID, out ClientObjectData data)) return;
+
+                    //    GameScene.Game.BigMapBox.SelectedInfo = Globals.MapInfoList.Binding.FirstOrDefault(x => x.Index == data.MapIndex);
+                    //}
+                };
+
+                Labels.Add(label);
+            }
+
+            AddButton.Enabled = Members.Count == 0 || Members[0].ObjectID == GameScene.Game.User.ObjectID;
+        }
+        #endregion
+
+        #region IDisposable
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                _AllowGroup = false;
+                AllowGroupChanged = null;
+
+                if (AllowGroupButton != null)
+                {
+                    if (!AllowGroupButton.IsDisposed)
+                        AllowGroupButton.Dispose();
+
+                    AllowGroupButton = null;
+                }
+
+                if (AddButton != null)
+                {
+                    if (!AddButton.IsDisposed)
+                        AddButton.Dispose();
+
+                    AddButton = null;
+                }
+
+                if (RemoveButton != null)
+                {
+                    if (!RemoveButton.IsDisposed)
+                        RemoveButton.Dispose();
+
+                    RemoveButton = null;
+                }
+
+                if (MemberTab != null)
+                {
+                    if (!MemberTab.IsDisposed)
+                        MemberTab.Dispose();
+
+                    MemberTab = null;
+                }
+
+                for (int i = 0; i < Labels.Count; i++)
+                {
+                    if (Labels[i] != null)
+                    {
+                        if (!Labels[i].IsDisposed)
+                            Labels[i].Dispose();
+
+                        Labels[i] = null;
+                    }
+                }
+                Labels.Clear();
+                Labels = null;
+
+                if (_SelectedLabel != null)
+                {
+                    if (!_SelectedLabel.IsDisposed)
+                        _SelectedLabel.Dispose();
+
+                    _SelectedLabel = null;
+                }
+
+                SelectedLabelChanged = null;
+
+                Members.Clear();
+                Members = null;
+            }
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// 左边组队列表信息框
+    /// </summary>
+    public sealed class GroupMemberDialog : DXWindow
+    {
+        public DXControl MemberContainer;
+
+        public List<GroupMember> GroupMembers = new List<GroupMember>();
+
+        public override bool CustomSize => false;
+
+        public override bool AutomaticVisibility => false;
+
+        public override WindowType Type => WindowType.None;
+
+        public GroupMemberDialog()
+        {
+            //TitleLabel.Text = "Group";
+            HasTitle = false;
+            HasFooter = false;
+            HasTopBorder = false;
+            Border = false;
+            TitleLabel.Visible = false;
+            CloseButton.Visible = false;
+            //AllowResize = false;
+            PassThrough = true;
+            Opacity = 0;
+            Size = new Size(140, 0);
+            MemberContainer = new DXControl
+            {
+                Size = new Size(ClientArea.Size.Width - 4, ClientArea.Size.Height - 4),
+                Location = new Point(11, TitleLabel.Size.Height + 20),
+                Parent = this,
+                PassThrough = true,
+            };
+        }
+
+        /// <summary>
+        /// 调整窗口大小
+        /// </summary>
+        /// <param name="count"></param>
+        public void ResizeWindow(int count)
+        {
+            Visible = Visible || count == 2;
+            int width = 140 + 125 * ((count - 1) / 10);
+            int height = 52 * Math.Min(10, count);
+            Size = new Size(width, height + TitleLabel.Size.Height + 20);
+            MemberContainer.Size = new Size(ClientArea.Size.Width - 4, ClientArea.Size.Height - 4);
+        }
+
+        /// <summary>
+        /// 填充成员
+        /// </summary>
+        /// <param name="currentMembers"></param>
+        public void PopulateMembers(List<ClientPlayerInfo> currentMembers)
+        {
+            new List<ClientPlayerInfo>(currentMembers);
+            ResizeWindow(0);
+            foreach (GroupMember groupMember2 in GroupMembers)
+            {
+                groupMember2.Dispose();
+            }
+            if (currentMembers.Count <= 0)
+            {
+                return;
+            }
+            GroupMembers.Clear();
+            for (int i = 0; i < currentMembers.Count; i++)
+            {
+                ClientPlayerInfo playerInfo = currentMembers[i];
+                GroupMember currentGroupMember = new GroupMember(playerInfo);
+                int num = i % 10;
+                int x2 = 1 + Math.Abs(i / 10) * (currentGroupMember.Size.Width + 5);
+                int y = 1 + ((num != 0) ? (num * currentGroupMember.Size.Height + num * 5) : 0);
+                GroupMembers.Add(currentGroupMember);
+                currentGroupMember.Parent = MemberContainer;
+                currentGroupMember.Location = new Point(x2, y);
+                //GroupMember groupMember = currentGroupMember;
+                //groupMember.ProcessAction = (Action)Delegate.Combine(groupMember.ProcessAction, (Action)delegate
+                //{
+                //    if (MouseControl == currentGroupMember)
+                //    {
+                //        MapObject mapObject = GameScene.Game.MapControl.Objects?.FirstOrDefault((MapObject x) => x.ObjectID == currentGroupMember.ObjectID);
+                //        if (mapObject != null)
+                //        {
+                //            GameScene.Game.MouseObject = mapObject;
+                //        }
+                //    }
+                //});
+            }
+            ResizeWindow(currentMembers.Count);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (!disposing)
+            {
+                return;
+            }
+            foreach (GroupMember groupMember in GroupMembers)
+            {
+                if (!groupMember.IsDisposed)
+                {
+                    groupMember.Dispose();
+                }
+            }
+            GroupMembers.Clear();
+            GroupMembers = null;
+            if (!MemberContainer.IsDisposed)
+            {
+                MemberContainer.Dispose();
+            }
+            MemberContainer = null;
+        }
+    }
+
+    public sealed class GroupMember : DXControl
+    {
+        public DXLabel MemberName;
+
+        public DXControl HealthBar, HealthBarBackground;
+
+        //public DXControl ManaBar;
+
+        public uint ObjectID;
+
+        public GroupMember(ClientPlayerInfo playerInfo)
+        {
+            Size = new Size(114, 24);
+            DrawTexture = true;
+            //BackColour = Color.FromArgb(16, 8, 8);
+            Opacity = 0.5f;
+            //Border = true;
+            //BorderColour = Color.FromArgb(82, 65, 57);
+            Location = new Point(1, 1);
+            PassThrough = true;
+            ObjectID = playerInfo.ObjectID;
+            MemberName = new DXLabel
+            {
+                Location = new Point(17, 3),
+                Font = new Font(Config.FontName, CEnvir.FontSize(10f), FontStyle.Regular),
+                DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
+                Size = new Size(100, 15),
+                Parent = this,
+                ForeColour = Color.Yellow,
+                Outline = false,
+                //OutlineColour = Color.Black,
+                IsControl = false,
+                PassThrough = true,
+                Text = playerInfo.Name
+            };
+
+            HealthBarBackground = new DXControl
+            {
+                Parent = this,
+                Size = new Size(100, 3),
+                Location = new Point(7, MemberName.Location.Y + MemberName.Size.Height + 3),
+                DrawTexture = true,
+                BackColour = Color.FromArgb(250, 215, 195),
+                Border = true,
+                BorderColour = Color.Black,
+                Visible = true,
+                PassThrough = true
+            };
+
+            HealthBar = new DXControl
+            {
+                Parent = this,
+                Size = new Size(100, 3),
+                Location = new Point(7, MemberName.Location.Y + MemberName.Size.Height + 3),
+                DrawTexture = true,
+                BackColour = Color.FromArgb(255, 93, 57),
+                Border = true,
+                BorderColour = Color.Black,
+                Visible = true,
+                PassThrough = true
+            };
+
+            //ManaBar = new DXControl
+            //{
+            //    Parent = this,
+            //    Size = new Size(100, 3),
+            //    Location = new Point(7, HealthBar.Location.Y + 1 + HealthBar.Size.Height),
+            //    DrawTexture = true,
+            //    BackColour = Color.FromArgb(55, 55, 230),
+            //    Visible = true,
+            //    PassThrough = true
+            //};
+        }
+
+        public override void Process()
+        {
+            base.Process();
+
+            if (!Visible) return;
+
+            //没有玩家对象数据直接跳出
+            ClientObjectData data;
+            if (!GameScene.Game.DataDictionary.TryGetValue(ObjectID, out data)) return;
+
+            int currentHealth = Math.Max(0, data.Health);
+            int maxHealth = data.MaxHealth;
+            MemberName.ForeColour = (currentHealth <= 0) ? Color.Red : Color.White;
+            HealthBar.Size = new Size(currentHealth * 100 / maxHealth, 3);
+            //ManaBar.Size = new Size(currentMana * 100 / maxMana, 3);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (!disposing)
+            {
+                return;
+            }
+            MemberName.TryDispose();
+            HealthBar.TryDispose();
+            HealthBarBackground.TryDispose();
+            //ManaBar = null;
+
+            ObjectID = 0;
+        }
+    }
+}

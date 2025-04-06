@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props')" />
+  <Import Project="..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{96AB70CE-1B6A-4511-BDD3-3AADD4DAD15A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Server</RootNamespace>
+    <AssemblyName>Server</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>F:\桌面\Server\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>F:\桌面\Server\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.2</LangVersion>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="CSScriptLib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CS-Script.Core.2.0.0\lib\netstandard2.0\CSScriptLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=27.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.27.2.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Drawing.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.DemoData.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Images.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v23.2.Core, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v23.2.UI, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v23.2, Version=23.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="FastExpressionCompiler, Version=3.2.1.0, Culture=neutral, PublicKeyToken=dfbf2bd50fcf7768, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastExpressionCompiler.3.2.1\lib\net45\FastExpressionCompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.SQLite, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Wpf, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="License, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f80b1601a4d8a9dd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\License.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.3.6.0\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.3.6.0\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Scripting, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Scripting.3.6.0\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Scripting, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Scripting.Common.3.6.0\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.6\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.3.1.6\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.6\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.3.1.6\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.6\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.6\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.2.0.0\lib\net461\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.14\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.2\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.2\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.2\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.2\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=3.2.4.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.2.4\lib\net461\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="RulesEngine, Version=3.5.0.0, Culture=neutral, PublicKeyToken=147cfe0bc87241c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\RulesEngine.3.5.0\lib\netstandard2.0\RulesEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentry, Version=3.11.1.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sentry.3.11.1\lib\net461\Sentry.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.2.0\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectSound, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectSound.4.2.0\lib\net45\SharpDX.DirectSound.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.2.0\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Linq.Dynamic.Core, Version=1.4.5.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Core.1.4.5\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.5.0.0\lib\net461\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Loader, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Loader.4.3.0\lib\netstandard1.5\System.Runtime.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\145Client\Extentions\ColorEx.cs">
+      <Link>Extentions\ColorEx.cs</Link>
+    </Compile>
+    <Compile Include="..\145Client\Extentions\LineEx.cs">
+      <Link>Extentions\LineEx.cs</Link>
+    </Compile>
+    <Compile Include="..\145Client\Extentions\RectangleEx.cs">
+      <Link>Extentions\RectangleEx.cs</Link>
+    </Compile>
+    <Compile Include="..\145Client\Extentions\SpriteEx.cs">
+      <Link>Extentions\SpriteEx.cs</Link>
+    </Compile>
+    <Compile Include="..\145Client\Extentions\Vector3Ex.cs">
+      <Link>Extentions\Vector3Ex.cs</Link>
+    </Compile>
+    <Compile Include="Helpers\ExportImportHelp.cs" />
+    <Compile Include="Helpers\HelperExcel.cs" />
+    <Compile Include="Helpers\HelperExcelBase.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\JsonPropertyContractResolver.cs" />
+    <Compile Include="Helpers\LicenseHelper.cs" />
+    <Compile Include="Helpers\NPOIHelper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SMain.Designer.cs">
+      <DependentUpon>SMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AchievementInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AchievementInfoView.Designer.cs">
+      <DependentUpon>AchievementInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameStoreSaleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GameStoreSaleView.Designer.cs">
+      <DependentUpon>GameStoreSaleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameGoldPaymentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GameGoldPaymentView.Designer.cs">
+      <DependentUpon>GameGoldPaymentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AccountView.Designer.cs">
+      <DependentUpon>AccountView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BaseStatView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BaseStatView.Designer.cs">
+      <DependentUpon>BaseStatView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CharacterView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CharacterView.Designer.cs">
+      <DependentUpon>CharacterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompanionInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CompanionInfoView.Designer.cs">
+      <DependentUpon>CompanionInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfigView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConfigView.Designer.cs">
+      <DependentUpon>ConfigView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DropInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DropInfoView.Designer.cs">
+      <DependentUpon>DropInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CastleInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CastleInfoView.Designer.cs">
+      <DependentUpon>CastleInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EventInfoView.Designer.cs">
+      <DependentUpon>EventInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiagnosticView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiagnosticView.designer.cs">
+      <DependentUpon>DiagnosticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CraftItemInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CraftItemInfoView.Designer.cs">
+      <DependentUpon>CraftItemInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemCustomInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ItemCustomInfoView.Designer.cs">
+      <DependentUpon>ItemCustomInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiyMonShowViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiyMonShowViewer.Designer.cs">
+      <DependentUpon>DiyMonShowViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonAnimationFrameView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MonAnimationFrameView.designer.cs">
+      <DependentUpon>MonAnimationFrameView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestInfoEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QuestInfoEditForm.designer.cs">
+      <DependentUpon>QuestInfoEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PyMetrics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PyMetrics.Designer.cs">
+      <DependentUpon>PyMetrics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAchievementView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserAchievementView.Designer.cs">
+      <DependentUpon>UserAchievementView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserQuestView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserQuestView.Designer.cs">
+      <DependentUpon>UserQuestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TriggerInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TriggerInfoView.Designer.cs">
+      <DependentUpon>TriggerInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuffInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BuffInfoView.Designer.cs">
+      <DependentUpon>BuffInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FishingAreaInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FishingAreaInfoView.Designer.cs">
+      <DependentUpon>FishingAreaInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WeaponUpgradeInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WeaponUpgradeInfoView.Designer.cs">
+      <DependentUpon>WeaponUpgradeInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuildView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GuildView.Designer.cs">
+      <DependentUpon>GuildView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiyMagicEffectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiyMagicEffectView.Designer.cs">
+      <DependentUpon>DiyMagicEffectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonDiyAiActionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MonDiyAiActionView.Designer.cs">
+      <DependentUpon>MonDiyAiActionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LangInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LangInfoView.Designer.cs">
+      <DependentUpon>LangInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RewardPoolView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RewardPoolView.Designer.cs">
+      <DependentUpon>RewardPoolView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyLogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CurrencyLogView.Designer.cs">
+      <DependentUpon>CurrencyLogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CleanAccountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CleanAccountView.Designer.cs">
+      <DependentUpon>CleanAccountView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\模板View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\模板View.Designer.cs">
+      <DependentUpon>模板View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChatLogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ChatLogView.Designer.cs">
+      <DependentUpon>ChatLogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WeaponCraftStatInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WeaponCraftStatInfoView.designer.cs">
+      <DependentUpon>WeaponCraftStatInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonsterInfoStatView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MonsterInfoStatView.designer.cs">
+      <DependentUpon>MonsterInfoStatView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemInfoStatView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ItemInfoStatView.designer.cs">
+      <DependentUpon>ItemInfoStatView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ItemInfoView.Designer.cs">
+      <DependentUpon>ItemInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MagicInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MagicInfoView.Designer.cs">
+      <DependentUpon>MagicInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MapInfoView.Designer.cs">
+      <DependentUpon>MapInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapRegionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MapRegionView.Designer.cs">
+      <DependentUpon>MapRegionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MapViewer.Designer.cs">
+      <DependentUpon>MapViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonsterInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MonsterInfoView.Designer.cs">
+      <DependentUpon>MonsterInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MovementInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MovementInfoView.Designer.cs">
+      <DependentUpon>MovementInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NPCInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NPCInfoView.Designer.cs">
+      <DependentUpon>NPCInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NPCPageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NPCPageView.Designer.cs">
+      <DependentUpon>NPCPageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QuestInfoView.Designer.cs">
+      <DependentUpon>QuestInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RespawnInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RespawnInfoView.Designer.cs">
+      <DependentUpon>RespawnInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SafeZoneInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SafeZoneInfoView.Designer.cs">
+      <DependentUpon>SafeZoneInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SetInfoView.Designer.cs">
+      <DependentUpon>SetInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StoreInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StoreInfoView.Designer.cs">
+      <DependentUpon>StoreInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystemLogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SystemLogView.Designer.cs">
+      <DependentUpon>SystemLogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserConquestStatsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserConquestStatsView.Designer.cs">
+      <DependentUpon>UserConquestStatsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserMailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserMailView.Designer.cs">
+      <DependentUpon>UserMailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserItemView.Designer.cs">
+      <DependentUpon>UserItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserDropView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserDropView.Designer.cs">
+      <DependentUpon>UserDropView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SMain.resx">
+      <DependentUpon>SMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AchievementInfoView.resx">
+      <DependentUpon>AchievementInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GameStoreSaleView.resx">
+      <DependentUpon>GameStoreSaleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GameGoldPaymentView.resx">
+      <DependentUpon>GameGoldPaymentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AccountView.resx">
+      <DependentUpon>AccountView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BaseStatView.resx">
+      <DependentUpon>BaseStatView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CharacterView.resx">
+      <DependentUpon>CharacterView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CompanionInfoView.resx">
+      <DependentUpon>CompanionInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConfigView.resx">
+      <DependentUpon>ConfigView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DropInfoView.resx">
+      <DependentUpon>DropInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CastleInfoView.resx">
+      <DependentUpon>CastleInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EventInfoView.resx">
+      <DependentUpon>EventInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiagnosticView.resx">
+      <DependentUpon>DiagnosticView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChatLogView.resx">
+      <DependentUpon>ChatLogView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CraftItemInfoView.resx">
+      <DependentUpon>CraftItemInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ItemCustomInfoView.resx">
+      <DependentUpon>ItemCustomInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiyMonShowViewer.resx">
+      <DependentUpon>DiyMonShowViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MonAnimationFrameView.resx">
+      <DependentUpon>MonAnimationFrameView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\QuestInfoEditForm.resx">
+      <DependentUpon>QuestInfoEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PyMetrics.resx">
+      <DependentUpon>PyMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserAchievementView.resx">
+      <DependentUpon>UserAchievementView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserQuestView.resx">
+      <DependentUpon>UserQuestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TriggerInfoView.resx">
+      <DependentUpon>TriggerInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BuffInfoView.resx">
+      <DependentUpon>BuffInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FishingAreaInfoView.resx">
+      <DependentUpon>FishingAreaInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WeaponUpgradeInfoView.resx">
+      <DependentUpon>WeaponUpgradeInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GuildView.resx">
+      <DependentUpon>GuildView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiyMagicEffectView.resx">
+      <DependentUpon>DiyMagicEffectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MonDiyAiActionView.resx">
+      <DependentUpon>MonDiyAiActionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LangInfoView.resx">
+      <DependentUpon>LangInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RewardPoolView.resx">
+      <DependentUpon>RewardPoolView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CurrencyLogView.resx">
+      <DependentUpon>CurrencyLogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CleanAccountView.resx">
+      <DependentUpon>CleanAccountView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\模板View.resx">
+      <DependentUpon>模板View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WeaponCraftStatInfoView.resx">
+      <DependentUpon>WeaponCraftStatInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MonsterInfoStatView.resx">
+      <DependentUpon>MonsterInfoStatView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ItemInfoStatView.resx">
+      <DependentUpon>ItemInfoStatView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ItemInfoView.resx">
+      <DependentUpon>ItemInfoView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MagicInfoView.resx">
+      <DependentUpon>MagicInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MapInfoView.resx">
+      <DependentUpon>MapInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MapRegionView.resx">
+      <DependentUpon>MapRegionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MapViewer.resx">
+      <DependentUpon>MapViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MonsterInfoView.resx">
+      <DependentUpon>MonsterInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MovementInfoView.resx">
+      <DependentUpon>MovementInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NPCInfoView.resx">
+      <DependentUpon>NPCInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NPCPageView.resx">
+      <DependentUpon>NPCPageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\QuestInfoView.resx">
+      <DependentUpon>QuestInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RespawnInfoView.resx">
+      <DependentUpon>RespawnInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SafeZoneInfoView.resx">
+      <DependentUpon>SafeZoneInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SetInfoView.resx">
+      <DependentUpon>SetInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StoreInfoView.resx">
+      <DependentUpon>StoreInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SystemLogView.resx">
+      <DependentUpon>SystemLogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserConquestStatsView.resx">
+      <DependentUpon>UserConquestStatsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserMailView.resx">
+      <DependentUpon>UserMailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserItemView.resx">
+      <DependentUpon>UserItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserDropView.resx">
+      <DependentUpon>UserDropView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServerLibrary\ServerLibrary.csproj">
+      <Project>{b2d81868-678f-4933-b308-091edfc91217}</Project>
+      <Name>ServerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.0.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
+  <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

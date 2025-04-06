@@ -1,0 +1,19 @@
+<div >
+	<style src="login.css" />
+	<div class="menu">
+		<div class="menu2">
+			<img id="newAcount" src="login13.png" class="img"/>
+			<img id="changePwd" src="login15.png" class="img"/>
+			<img id="forgetPwd" src="login19.png" class="img"/>
+			<img id="exit" src="login17.png" class="img"/>
+		</div>
+	</div>
+	<div class="content">
+		<span class="input_pre">ID</span>
+		<input id="name" type="text" placeholder="用户名" class="input" />
+		<span class="input_pre">PASSWORD</span>
+		<input id="password" type="password" placeholder="密码" class="input" />
+		<img id="submit" src="login11.png" class="img"/>
+    </div>
+	
+</div>

@@ -1,0 +1,16 @@
+<div style="padding:50 0">
+	<style src="creat.css" />
+	<img src="background.png"  class="bg"/>
+	<div class="content">
+		<img class="icon" src="pwdback.png"/>
+		<div class="row" style="height:100;">
+			<span class="pre">账户</span><span class="pre2">（注册邮箱）</span>
+			<input id="email" type="text" placeholder="账号" class="row_input"/>
+		</div>
+		<div class="submit">
+			<img id="ok" src="creat.png"/>
+			<img id="cancel" src="cancel.png"/>
+		</div>
+    </div>
+	
+</div>

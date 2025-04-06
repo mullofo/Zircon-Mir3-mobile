@@ -1,0 +1,52 @@
+[
+  {
+    "WorkflowName": "奖金池玩法-领取奖金",
+    "GlobalParams": [
+      {
+        "Name": "当前服务器人数",
+        "Expression": "SEnvir.Connections.Count"
+      },
+      {
+        "Name": "人品爆发额外比例",
+        "Expression": "1"
+      },
+      {
+        "Name": "人品爆发几率",
+        "Expression": "10"
+      }
+    ],
+    "Rules": [
+      {
+        "RuleName": "计算最终奖励",
+        "ErrorMessage": "计算最终奖励失败",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "LocalParams": [// 各种加成可以写在这
+          {
+            "Name": "活动期间加成",
+            "Expression": "0"
+          },
+          {
+            "Name": "人品爆发加成",
+            "Expression": "SEnvir.Random.Next(100) < 人品爆发几率 ? 人品爆发额外比例 : 0"
+          },
+          {
+            "Name": "组队调整",
+            "Expression": "input2.组队人数 < 1 ? 0 : -0.05"
+          }
+        ],
+        // 最终奖励算法
+        "Expression": "true",
+        "Actions": {
+         "OnSuccess": {
+            "Name": "OutputExpression",
+            "Context": {
+               "Expression": "input1.当前奖金池余额 * Convert.ToDecimal(Math.Log(当前服务器人数, 2.0)+活动期间加成+人品爆发加成+组队调整) + 0.01"
+            }
+         }
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+﻿<Window x:Class="Launcher.CheckWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        mc:Ignorable="d"
+        Title="CheckWindow" Height="450" Width="800" AllowsTransparency="True" Background="Transparent">
+    <Grid  x:Name="checkFrame">
+        <Grid Background="	#DCDCDC" Opacity="0.3"></Grid>
+        <Image Source="images/check.png" Width="500" Height="300"/>
+        <Canvas Width="500" Height="240">
+            <Label Canvas.Left="102" Canvas.Top="62" Foreground="Yellow">操作系统检测：</Label>
+            <Label  x:Name="osLabel" Canvas.Right="102" Canvas.Top="62" Foreground="White" Width="75">准备中...</Label>
+            <Label  Canvas.Left="102" Canvas.Top="92" Foreground="Yellow">DirectX9 检测：</Label>
+            <Label x:Name="dxLabel" Canvas.Right="102" Canvas.Top="92" Foreground="White" Width="75">准备中...</Label>
+            <Label Canvas.Left="102" Canvas.Top="122" Foreground="Yellow">.Net Framework 4.6.1 检测：</Label>
+            <Label x:Name="netLabel" Canvas.Right="102" Canvas.Top="122" Foreground="White" Width="75">准备中...</Label>
+        </Canvas>
+    </Grid>
+</Window>

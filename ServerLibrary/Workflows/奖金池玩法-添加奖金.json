@@ -1,0 +1,55 @@
+[
+  {
+    "WorkflowName": "奖金池玩法-添加奖金",
+    "GlobalParams": [
+      {
+        "Name": "元宝充值转换比例",
+        "Expression": "1.1"
+      },
+      {
+        "Name": "商城消费转换比例",
+        "Expression": "1.2"
+      },
+      {
+        "Name": "结果保留几位小数",
+        "Expression": "2"
+      }
+    ],
+    "Rules": [
+      {
+        "RuleName": "充值元宝添加奖金",
+        "ErrorMessage": "无法添加奖金",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.数额 > 0 AND input1.来源 == \"元宝充值\"", // input1是充值信息，input2是池子信息
+        "SuccessEvent": "允许添加奖金", // 这是注释 随便写
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression", // 不要改这个
+            "Context": { // 下面是算法 随便改
+              "Expression": "Math.Round(input1.数额 * 元宝充值转换比例, 结果保留几位小数)"
+            }
+          }
+        }
+      },
+      {
+        "RuleName": "商城消费添加奖金",
+        "ErrorMessage": "无法添加奖金",
+        "Enabled": true,
+        "ErrorType": 0,
+        "RuleExpressionType": 0,
+        "Expression": "input1.数额 > 0 AND input1.来源 == \"商城消费\"", // input1是充值信息，input2是池子信息
+        "SuccessEvent": "允许添加奖金", // 这是注释 随便写
+        "Actions": {
+          "OnSuccess": {
+            "Name": "OutputExpression", // 不要改这个
+            "Context": { // 下面是算法 随便改
+              "Expression": "Math.Round(input1.数额 * 商城消费转换比例, 结果保留几位小数)"
+            }
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+     <style name="edit_main">
+        <item name="android:background">@drawable/edittext</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">12dip</item>
+        <item name="android:singleLine">true</item>
+         <item name="android:singleLine">true</item>
+        <item name="android:layout_height">13dip</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="edit">
+        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">11dip</item>
+        <item name="android:layout_height">12dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:minWidth">120dip</item>
+        <item name="android:maxLines">1</item>
+    </style>
+      <style name="text">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">11dip</item>
+    </style>
+     <style name="suf_text">
+        <item name="android:textColor">#fff187</item>
+        <item name="android:textSize">8dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+    </style>
+</resources>

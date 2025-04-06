@@ -1,0 +1,24 @@
+<div style="padding:50 0">
+	<style src="creat.css" />
+	<img src="background.png"  class="bg"/>
+	<div class="content">
+		<img class="icon" src="pwdback.png"/>
+		<div class="row">
+			<span class="pre">重置KEY</span>
+			<input id="key" type="text" placeholder="KEY" class="row_input"/>
+		</div>
+		<div class="row">
+			<span class="pre">新密码</span>
+			<input id="u_pwd" type="password" placeholder="新密码" class="row_input" />
+		</div>
+		<div class="row">
+			<span class="pre">确认密码</span>
+			<input id="u_pwd_confirm" type="password" placeholder="确认密码" class="row_input" />
+		</div>
+		<div class="submit">
+			<img id="ok" src="creat.png"/>
+			<img id="cancel" src="cancel.png"/>
+		</div>
+    </div>
+	
+</div>

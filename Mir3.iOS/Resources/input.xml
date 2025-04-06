@@ -1,0 +1,3 @@
+﻿<div style="margin:10 0">
+    <input id="edit" type="text" placeholder="请输入"  style="background: #000;color: #fff;width:80%;height:40;float:center;font-size: large;"/>
+</div>

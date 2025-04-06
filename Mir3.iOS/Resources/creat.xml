@@ -1,0 +1,28 @@
+<div style="padding:50 0">
+	<style src="creat.css" />
+	<img src="background.png"  class="bg"/>
+	<div class="content">
+		<img class="icon" src="creatacc.png"/>
+		<div class="row">
+			<span class="pre">账号</span><span class="pre2">（真实邮箱）</span>
+			<input id="acc_name" type="text" placeholder="账户" class="row_input"/>
+		</div>
+		<div class="row">
+			<span class="pre">密码</span>
+			<input id="c_pwd" type="password" placeholder="密码" class="row_input" />
+		</div>
+		<div class="row">
+			<span class="pre">确认密码</span>
+			<input id="c_pwd_confirm" type="password" placeholder="确认密码" class="row_input" />
+		</div>
+		<div class="row">
+			<span class="pre">激活码</span><span class="pre2">（向管理索要）</span>
+			<input id="c_invite_code" type="text" placeholder="激活码" class="row_input" />
+		</div>
+		<div class="submit">
+			<img id="ok" src="creat.png"/>
+			<img id="cancel" src="cancel.png"/>
+		</div>
+    </div>
+	
+</div>
